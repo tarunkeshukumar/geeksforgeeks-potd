@@ -1,0 +1,28 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/hands-of-straights/1
+
+class Solution {
+  public:
+    bool isStraightHand(int N, int groupSize, vector<int> &hand) {
+        // code here
+        if (N % groupSize != 0)
+      return false;
+    map<int, int> mp;
+    for (int i = 0; i < N; i++)
+    {
+      mp[hand[i]]++;
+    }
+    for (auto it : mp)
+    {
+      if (it.second > 0)
+      {
+        for (int i = 1; i < groupSize; i++)
+        {
+          if (mp[it.first + i] < it.second)
+            return false;
+          mp[it.first + i] -= it.second;
+        }
+      }
+    }
+    return true;
+    }
+};
