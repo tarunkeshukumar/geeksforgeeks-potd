@@ -1,0 +1,34 @@
+//Problem link :  https://practice.geeksforgeeks.org/problems/expression-add-operators/1
+
+class Solution:
+    def addOperators(self, S, target):
+        # Code here
+        result = []
+        def backtrack(num, target, path, index, current_val, prev_num, result):
+            # Base case: If all digits have been considered and the current value equals the target, add the path to the result
+            if index == len(num):
+                if current_val == target:
+                    result.append(path)
+                return
+        
+            # Iterate through all possible lengths of the current number starting from the current index
+            for i in range(index, len(num)):
+                # Avoid adding leading zeros to a number
+                if i != index and num[index] == '0':
+                    break
+                
+                # Extract the current number from the string
+                curr_num_str = num[index:i+1]
+                curr_num = int(curr_num_str)
+                
+                # For the first number, only consider the number itself as the current value
+                if index == 0:
+                    backtrack(num, target, curr_num_str, i+1, curr_num, curr_num, result)
+                else:
+                    # Try all possible operators: '+', '-', and '*'
+                    backtrack(num, target, path + '+' + curr_num_str, i+1, current_val + curr_num, curr_num, result)
+                    backtrack(num, target, path + '-' + curr_num_str, i+1, current_val - curr_num, -curr_num, result)
+                    backtrack(num, target, path + '*' + curr_num_str, i+1, current_val - prev_num + prev_num * curr_num, prev_num * curr_num, result)
+        
+        backtrack(S, target, "", 0, 0, 0, result)
+        return result
