@@ -1,0 +1,32 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/find-k-th-smallest-element-in-given-n-ranges/1
+
+class Solution{
+    public:
+   
+    vector<int>kthSmallestNum(int n, vector<vector<int>>&range, int q, vector<int>queries){
+        //Write your code here
+        vector<int> ans;
+        int countEle=0;
+        sort(range.begin(), range.end());
+        int pre=0;
+        for(int i=0;i<q;i++){
+            for(int j=0; j<n; j++){
+                int currEle=range[j][1]-range[j][0]+1;
+                if(pre>=range[j][0])
+                    countEle=currEle+countEle-(pre-range[j][0]+1);
+                else
+                    countEle=currEle+countEle;
+                pre=range[j][1];
+                if(countEle>=queries[i]){
+                    ans.push_back(range[j][1]-(countEle-queries[i]));
+                    break;
+                }
+            }
+            if(countEle<queries[i]){
+                ans.push_back(-1);
+            }
+            
+        }
+        return ans;
+      }
+};
