@@ -1,0 +1,26 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/arranging-the-array1131/1
+
+class Solution
+{
+    public:
+        void Rearrange(int arr[], int n)
+        {
+            // Your code goes here
+            vector<int>v1;
+            vector<int>v2;
+            
+            for(int i=0; i<n; ++i){
+                if(arr[i]<0)
+                    v1.push_back(arr[i]);
+                else
+                    v2.push_back(arr[i]);
+            }
+            
+            for(int i=0; i<v1.size();++i)
+                arr[i] = v1[i];
+                int j=0;
+            for(int i=v1.size(); i<(v1.size()+v2.size());++i)
+                arr[i] = v2[j++];
+            
+        }
+};
