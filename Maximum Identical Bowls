@@ -1,0 +1,25 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/5bfe93cc7f5a214bc6342709c78bc3dceba0f1c1/1
+
+class Solution {
+  public:
+    int getMaximum(int N, vector<int> &arr) {
+        // code here
+        int sum=0;
+        for(auto x:arr)sum +=x;
+        int n=sum;
+        int i=2,maxi=-1;
+        while(sum%i == 0){
+            sum/=i;
+            maxi = min(maxi,n/i);
+        }
+        
+        for(i = 3; i<=sum; i++){
+            while(sum%i==0){
+                sum /=i;
+                maxi = max(maxi,n/i);
+            }
+        }
+        return maxi;
+        
+    }
+};
