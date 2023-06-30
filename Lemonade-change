@@ -1,0 +1,32 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/lemonade-change/1
+
+class Solution {
+  public:
+    bool lemonadeChange(int N, vector<int> &bills) {
+        // code here
+        int five=0,ten=0;
+        for(auto x:bills){
+            if(x==20){
+                if(five && ten){
+                    --five;
+                    --ten;
+                }
+                else if(five>=3){
+                    five -= 3;
+                }
+                else
+                    return false;
+            }
+            else if(x==10){
+                ++ten;
+                if(five)
+                    --five;
+                else
+                    return false;
+            }
+            else
+                ++five;
+        }
+        return true;
+    }
+};
