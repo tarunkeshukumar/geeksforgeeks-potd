@@ -1,0 +1,41 @@
+//ProblemLink : https://practice.geeksforgeeks.org/problems/next-happy-number4538/1
+
+class Solution{
+public:
+    int sumSquare(int n){
+        int sum=0;
+        while(n>0){
+            sum += (n%10)*(n%10);
+            n /= 10;
+        }
+        return sum;
+    }
+    
+    bool isHappy(int n){
+        if(n<10){
+            if(n==1 || n==7)
+                return true;
+            return false;
+        }
+        
+        int sum=0,x=n;
+        
+        while(x>9){
+            sum = sumSquare(x);
+            if(sum==1 || sum==7)
+                return true;
+            x = sum;
+        }
+        if(x==1 || x==7)
+            return true;
+        return false;
+    }
+    
+    int nextHappy(int N){
+        // code here
+        
+        while(!isHappy(++N) && N<=100000){}
+        
+        return N;
+    }
+};
