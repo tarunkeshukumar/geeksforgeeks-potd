@@ -1,0 +1,12 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/reverse-coding2452/1
+
+class Solution {
+  public:
+    int sumOfNaturals(int n) {
+        // code here
+        int mod = 1e9+7;
+        long long int l=1;
+        int ans = (((n%mod)*l*((n+1)%mod))/2)%mod;
+        return ans;
+    }
+};
