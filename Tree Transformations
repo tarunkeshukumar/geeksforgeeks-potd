@@ -1,0 +1,22 @@
+// Problem Link : https://practice.geeksforgeeks.org/problems/fbcd1787378ed396a8f24b47872cbc0ad2624f1d/1
+
+//User function Template for C++
+
+class Solution {
+    public:
+    int solve(int n, vector<int> p){
+        // code here
+        int i=0,ans = n-1;
+        vector<int> v(n+1,0);
+        
+        for(i=1 ;i<n;++i){
+            v[p[i]]++;
+            v[i]++;
+        }
+        for(i=0; i<n; ++i)
+            if(v[i]==1)
+                --ans;
+                
+        return ans>=0?ans:0;
+    }
+};
