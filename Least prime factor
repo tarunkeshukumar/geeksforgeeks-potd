@@ -1,0 +1,27 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/least-prime-factor5216/1
+
+class Solution {
+  public:
+    vector<int> leastPrimeFactor(int n) {
+        // code here
+        vector<int> ans(n+1,0);
+        
+        ans[1] = 1;
+        for(int i=2;i<=n; ++i){
+            int j=2;
+            if(i%j==0)
+                ans[i] = j;
+            else{
+                j=3;
+            while(j<=i){
+                if(i%j==0){
+                    ans[i] = j;
+                    break;
+                }
+                j+=2;
+            }
+            }
+        }
+        return ans;
+    }
+};
