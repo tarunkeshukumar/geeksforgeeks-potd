@@ -1,0 +1,22 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/ncr1019/1
+
+class Solution{
+public:
+    int nCr(int n, int r){
+        // code here
+        if(r>n)
+            return 0;
+        int mod=1e9+7;
+        vector<int>up;
+        
+        for(int i=0;i<=n;++i){
+            vector<int>down(i+1,1);
+            for(int j=1;j<i;++j){
+                down[j]=((up[j])%mod+(up[j-1])%mod)%mod;
+            }
+            up = down;
+        }
+        return up[r];
+        
+    }
+};
