@@ -1,0 +1,39 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1
+
+class Solution
+{
+	public:
+	    int fact(int n){
+	        if(n==0 || n==1)
+	            return 1;
+	        int ans = 1;
+	        while(n>0){
+	            ans *=n;
+	            --n;
+	        }
+	        return ans;
+	    }
+		vector<string>find_permutation(string S)
+		{
+		    // Code here there
+		    int n = S.length();
+		    vector<char> v(n);
+		    for(int i=0; i<n;++i)
+		        v[i] = S[i];
+		    
+		    vector<string> ans;
+		    set<string> s;
+		    int k=fact(n);
+		    while(k-->0){
+		        string temp="";
+		        for(auto x:v)
+		            temp+=x;
+		        s.insert(temp);
+		        next_permutation(v.begin(),v.end());
+		    }
+		    
+		    for(auto x:s)
+		        ans.push_back(x);
+		   return ans;
+		}
+};
