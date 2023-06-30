@@ -1,0 +1,34 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/union-of-two-linked-list/1
+
+class Solution
+{
+    public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2)
+    {
+        // code here
+        set<int>s;
+        Node*temp1 = head1;
+        Node*temp2 = head2;
+        
+        while(temp1){
+            s.insert(temp1->data);
+            temp1=temp1->next;
+        }
+        while(temp2){
+            s.insert(temp2->data);
+            temp2=temp2->next;
+        }
+        Node*head=new Node(0);
+        Node*ans=head;
+        for(auto x:s){
+            Node*temp=new Node(x);
+            if(!head)
+                head = temp;
+            else
+                head->next = temp;
+            head = head->next;
+        }
+        
+        return ans->next;
+    }
+};
