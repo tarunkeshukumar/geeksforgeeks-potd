@@ -1,0 +1,72 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/modify-linked-list-1-0546/1
+
+class Solution{
+    public:
+    
+    Node* reverse(Node*head){
+        Node*prev = NULL;
+        Node*cur = head;
+        Node*next = NULL;
+        
+        while(cur!=NULL){
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+    
+    struct Node* modifyTheList(struct Node *head)
+    {
+        //add code here.
+        //break into half
+        //reverse the second half and subtract each element of the second half
+        // with the coresponding first halp element
+        //then reverse the second half
+        // then merge the two halves
+        
+        
+        Node*temp =head;
+        int size =0;
+        while(temp)
+        {
+            size++;
+            temp = temp->next;
+        }
+       
+        Node*fast = head->next;
+        Node*slow = head;
+        
+        while(fast and fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        
+        Node*secondhead= reverse(slow->next);
+        
+        int l = size/2;
+        
+        Node*temp1= head;
+        Node*temp2 = secondhead;
+        
+         int tem = temp1->data;
+         temp1->data = temp2->data - temp1->data;
+         temp2->data =tem;
+        for(int i=0;i<l-1;i++)
+        {
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+            int temp = temp1->data;
+            temp1->data = temp2->data - temp1->data;
+            temp2->data =temp;
+        }
+        
+        Node*x = reverse(secondhead);
+        
+        return head;
+    
+    }
+};
