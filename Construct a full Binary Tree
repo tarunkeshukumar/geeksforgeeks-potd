@@ -1,0 +1,31 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/93c977e771fc0d82e87ba570702732edb2226ad7/1
+
+class Solution{
+  public:
+    
+    void solve(Node* root,int pre[], int low,int high){
+        if(low>=high)
+            return;
+        if(!root)
+            return;
+            
+        int mid = (low+high+1)/2;
+    
+        root->left = new Node(pre[low]);
+        
+        root->right = new Node(pre[mid]);
+        
+        solve(root->left,pre,low+1,mid);
+        solve(root->right,pre,mid+1,high);
+    }
+  
+    Node* constructBinaryTree(int pre[], int preMirror[], int size)
+    {
+        // Code here
+        // take root and divide into half
+        Node* root = new Node(pre[0]);
+         
+        solve(root,pre,1,size-1);
+        return root;
+    }
+};
