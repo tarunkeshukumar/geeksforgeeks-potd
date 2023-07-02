@@ -1,0 +1,22 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/set-bits0143/1
+
+class Solution {
+  public:
+    int setBits(int N) {
+        // Write Your Code here
+        if(N==0)
+            return 0;
+        int bit=0;
+        
+        while(N!=1)
+        {
+            if(N%2==1)
+                bit++;
+            N = N/2;
+        }
+        bit++;
+        return bit;
+        
+   
+    }
+};
