@@ -1,0 +1,12 @@
+// Problem link : https://practice.geeksforgeeks.org/problems/copy-set-bits-in-range0623/1
+
+class Solution:
+    def setSetBit(self, x, y, l, r):
+        # code here
+        i = l-1
+        while(l<=r):
+            x |= y&(1<<i)
+            i+=1
+            l+=1
+        
+        return x
